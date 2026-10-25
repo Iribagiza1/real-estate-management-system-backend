@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rw.auca.realestate.domain.Buyer;
 import rw.auca.realestate.service.BuyerService;
@@ -36,6 +37,11 @@ public class BuyerController {
     @GetMapping("/all")
     public List<Buyer> getAll() {
         return buyerService.getAll();
+    }
+
+    @GetMapping("/by-last-name")
+    public List<Buyer> getByLastName(@RequestParam String lastName) {
+        return buyerService.getByLastName(lastName);
     }
 
     @GetMapping("/{id}")

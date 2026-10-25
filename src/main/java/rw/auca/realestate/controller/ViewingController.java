@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rw.auca.realestate.domain.Viewing;
+import rw.auca.realestate.domain.ViewingStatus;
 import rw.auca.realestate.service.ViewingService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -36,6 +39,18 @@ public class ViewingController {
     @GetMapping("/all")
     public List<Viewing> getAll() {
         return viewingService.getAll();
+    }
+
+    @GetMapping("/by-status")
+    public List<Viewing> getByStatus(@RequestParam ViewingStatus status) {
+        return viewingService.getByStatus(status);
+    }
+
+    @GetMapping("/between")
+    public List<Viewing> getBetween(@RequestParam String start, @RequestParam String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return viewingService.getBetween(startDate, endDate);
     }
 
     @GetMapping("/{id}")

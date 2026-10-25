@@ -46,4 +46,8 @@ public class BuyerService {
         buyerRepository.deleteById(id);
         return "Buyer deleted successfully";
     }
+
+    public List<Buyer> getByLastName(String lastName) {
+        return buyerRepository.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
 }

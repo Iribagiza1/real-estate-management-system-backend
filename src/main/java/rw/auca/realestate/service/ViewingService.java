@@ -2,8 +2,10 @@ package rw.auca.realestate.service;
 
 import org.springframework.stereotype.Service;
 import rw.auca.realestate.domain.Viewing;
+import rw.auca.realestate.domain.ViewingStatus;
 import rw.auca.realestate.repository.ViewingRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -45,5 +47,13 @@ public class ViewingService {
         }
         viewingRepository.deleteById(id);
         return "Viewing deleted successfully";
+    }
+
+    public List<Viewing> getByStatus(ViewingStatus status) {
+        return viewingRepository.findByStatusOrderByViewingDateAsc(status);
+    }
+
+    public List<Viewing> getBetween(LocalDate start, LocalDate end) {
+        return viewingRepository.findByViewingDateBetweenOrderByViewingDateAsc(start, end);
     }
 }
