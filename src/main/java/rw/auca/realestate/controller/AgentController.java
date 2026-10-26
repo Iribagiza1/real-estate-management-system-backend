@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -58,6 +59,30 @@ public class AgentController {
         String message = agentService.update(id, agent);
         if (message.contains("does not exist")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        return ResponseEntity.ok(message);
+    }
+
+    @PutMapping("/{agentId}/property-types/{propertyTypeId}")
+    public ResponseEntity<String> addPropertyType(@PathVariable UUID agentId, @PathVariable UUID propertyTypeId) {
+        String message = agentService.addPropertyType(agentId, propertyTypeId);
+        if (message.contains("does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        if (message.startsWith("The agent already has")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
+        return ResponseEntity.ok(message);
+    }
+
+    @PatchMapping("/{agentId}/property")
+    public ResponseEntity<String> changeProperty(@PathVariable UUID agentId, @RequestParam int plotNumber) {
+        String message = agentService.changeProperty(agentId, plotNumber);
+        if (message.contains("does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        if (message.startsWith("That property is taken")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
         }
         return ResponseEntity.ok(message);
     }

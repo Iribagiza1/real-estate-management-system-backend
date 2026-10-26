@@ -13,4 +13,6 @@ public interface ViewingRepository extends JpaRepository<Viewing, UUID> {
     List<Viewing> findByStatusOrderByViewingDateAsc(ViewingStatus status);
 
     List<Viewing> findByViewingDateBetweenOrderByViewingDateAsc(LocalDate start, LocalDate end);
+
+    boolean existsByAgentIdAndViewingDateAndStatusNot(UUID agentId, LocalDate viewingDate, ViewingStatus status);
 }

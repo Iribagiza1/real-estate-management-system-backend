@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,6 +34,12 @@ public class ViewingController {
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody Viewing viewing) {
         String message = viewingService.save(viewing);
+        if (message.equals("Viewing date cannot be in the past")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+        }
+        if (message.equals("Agent already has a viewing on that date")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(message);
     }
 
@@ -67,6 +74,18 @@ public class ViewingController {
         String message = viewingService.update(id, viewing);
         if (message.contains("does not exist")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        return ResponseEntity.ok(message);
+    }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<String> updateStatus(@PathVariable UUID id, @RequestParam ViewingStatus status) {
+        String message = viewingService.updateStatus(id, status);
+        if (message.contains("does not exist")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+        if (message.startsWith("Cannot change status")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
         }
         return ResponseEntity.ok(message);
     }

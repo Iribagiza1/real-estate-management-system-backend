@@ -20,6 +20,15 @@ public class ViewingService {
     }
 
     public String save(Viewing viewing) {
+        if (viewing.getViewingDate().isBefore(LocalDate.now())) {
+            return "Viewing date cannot be in the past";
+        }
+        boolean busy = viewingRepository.existsByAgentIdAndViewingDateAndStatusNot(
+                viewing.getAgent().getId(), viewing.getViewingDate(), ViewingStatus.DECLINED);
+        if (busy) {
+            return "Agent already has a viewing on that date";
+        }
+        viewing.setStatus(ViewingStatus.REQUESTED);
         viewingRepository.save(viewing);
         return "Viewing saved successfully";
     }
@@ -33,10 +42,12 @@ public class ViewingService {
     }
 
     public String update(UUID id, Viewing viewing) {
-        if (!viewingRepository.existsById(id)) {
+        Optional<Viewing> existing = viewingRepository.findById(id);
+        if (existing.isEmpty()) {
             return "The viewing with that id does not exist";
         }
         viewing.setId(id);
+        viewing.setStatus(existing.get().getStatus());
         viewingRepository.save(viewing);
         return "Viewing updated successfully";
     }
@@ -55,5 +66,24 @@ public class ViewingService {
 
     public List<Viewing> getBetween(LocalDate start, LocalDate end) {
         return viewingRepository.findByViewingDateBetweenOrderByViewingDateAsc(start, end);
+    }
+
+    public String updateStatus(UUID id, ViewingStatus newStatus) {
+        Optional<Viewing> found = viewingRepository.findById(id);
+        if (found.isEmpty()) {
+            return "The viewing with that id does not exist";
+        }
+        Viewing viewing = found.get();
+        ViewingStatus current = viewing.getStatus();
+        boolean allowed = (current == ViewingStatus.REQUESTED
+                && (newStatus == ViewingStatus.ACCEPTED || newStatus == ViewingStatus.DECLINED))
+                || (current == ViewingStatus.ACCEPTED
+                && (newStatus == ViewingStatus.ATTENDED || newStatus == ViewingStatus.DECLINED));
+        if (!allowed) {
+            return "Cannot change status from " + current + " to " + newStatus;
+        }
+        viewing.setStatus(newStatus);
+        viewingRepository.save(viewing);
+        return "Viewing status updated successfully";
     }
 }
