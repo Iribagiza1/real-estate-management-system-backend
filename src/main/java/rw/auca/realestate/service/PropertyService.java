@@ -46,4 +46,8 @@ public class PropertyService {
         propertyRepository.deleteById(id);
         return "Property deleted successfully";
     }
+
+    public List<Property> getFree() {
+        return propertyRepository.findFreeProperties();
+    }
 }

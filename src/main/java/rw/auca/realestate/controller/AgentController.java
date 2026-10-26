@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import rw.auca.realestate.domain.Agent;
 import rw.auca.realestate.service.AgentService;
@@ -36,6 +37,11 @@ public class AgentController {
     @GetMapping("/all")
     public List<Agent> getAll() {
         return agentService.getAll();
+    }
+
+    @GetMapping("/by-property-type")
+    public List<Agent> getByPropertyType(@RequestParam String name) {
+        return agentService.getByPropertyType(name);
     }
 
     @GetMapping("/{id}")

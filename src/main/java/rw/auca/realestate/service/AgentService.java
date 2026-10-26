@@ -46,4 +46,8 @@ public class AgentService {
         agentRepository.deleteById(id);
         return "Agent deleted successfully";
     }
+
+    public List<Agent> getByPropertyType(String name) {
+        return agentRepository.findAgentsByPropertyTypeName(name);
+    }
 }

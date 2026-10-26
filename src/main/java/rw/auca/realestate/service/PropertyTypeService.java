@@ -46,4 +46,8 @@ public class PropertyTypeService {
         propertyTypeRepository.deleteById(id);
         return "Property type deleted successfully";
     }
+
+    public List<PropertyType> getUnused() {
+        return propertyTypeRepository.findUnusedPropertyTypes();
+    }
 }

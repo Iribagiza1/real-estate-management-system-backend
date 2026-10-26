@@ -2,6 +2,7 @@ package rw.auca.realestate.service;
 
 import org.springframework.stereotype.Service;
 import rw.auca.realestate.domain.Buyer;
+import rw.auca.realestate.repository.AgentRepository;
 import rw.auca.realestate.repository.BuyerRepository;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.UUID;
 public class BuyerService {
 
     private final BuyerRepository buyerRepository;
+    private final AgentRepository agentRepository;
 
-    public BuyerService(BuyerRepository buyerRepository) {
+    public BuyerService(BuyerRepository buyerRepository, AgentRepository agentRepository) {
         this.buyerRepository = buyerRepository;
+        this.agentRepository = agentRepository;
     }
 
     public String save(Buyer buyer) {
@@ -49,5 +52,13 @@ public class BuyerService {
 
     public List<Buyer> getByLastName(String lastName) {
         return buyerRepository.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
+
+    public boolean agentExists(UUID agentId) {
+        return agentRepository.existsById(agentId);
+    }
+
+    public List<Buyer> getBuyersOfAgent(UUID agentId) {
+        return buyerRepository.findBuyersOfAgent(agentId);
     }
 }

@@ -44,6 +44,14 @@ public class BuyerController {
         return buyerService.getByLastName(lastName);
     }
 
+    @GetMapping("/of-agent/{agentId}")
+    public ResponseEntity<Object> getOfAgent(@PathVariable UUID agentId) {
+        if (!buyerService.agentExists(agentId)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The agent with that id does not exist");
+        }
+        return ResponseEntity.ok(buyerService.getBuyersOfAgent(agentId));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Buyer> buyer = buyerService.getById(id);

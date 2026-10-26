@@ -38,6 +38,11 @@ public class PropertyController {
         return propertyService.getAll();
     }
 
+    @GetMapping("/free")
+    public List<Property> getFree() {
+        return propertyService.getFree();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Property> property = propertyService.getById(id);

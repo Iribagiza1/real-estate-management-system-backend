@@ -38,6 +38,11 @@ public class PropertyTypeController {
         return propertyTypeService.getAll();
     }
 
+    @GetMapping("/unused")
+    public List<PropertyType> getUnused() {
+        return propertyTypeService.getUnused();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<PropertyType> propertyType = propertyTypeService.getById(id);
