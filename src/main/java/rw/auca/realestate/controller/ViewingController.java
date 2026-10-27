@@ -60,6 +60,11 @@ public class ViewingController {
         return viewingService.getBetween(startDate, endDate);
     }
 
+    @GetMapping("/stats/by-status")
+    public List<Object[]> getStatsByStatus() {
+        return viewingService.getStatsByStatus();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         Optional<Viewing> viewing = viewingService.getById(id);
@@ -87,6 +92,13 @@ public class ViewingController {
         if (message.startsWith("Cannot change status")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
         }
+        return ResponseEntity.ok(message);
+    }
+
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelDay(@RequestParam UUID agentId, @RequestParam String date) {
+        LocalDate day = LocalDate.parse(date);
+        String message = viewingService.cancelDay(agentId, day);
         return ResponseEntity.ok(message);
     }
 

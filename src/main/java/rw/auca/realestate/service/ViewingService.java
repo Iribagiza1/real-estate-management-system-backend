@@ -1,6 +1,7 @@
 package rw.auca.realestate.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rw.auca.realestate.domain.Viewing;
 import rw.auca.realestate.domain.ViewingStatus;
 import rw.auca.realestate.repository.OfferRepository;
@@ -92,5 +93,15 @@ public class ViewingService {
         viewing.setStatus(newStatus);
         viewingRepository.save(viewing);
         return "Viewing status updated successfully";
+    }
+
+    public List<Object[]> getStatsByStatus() {
+        return viewingRepository.countViewingsByStatus();
+    }
+
+    @Transactional
+    public String cancelDay(UUID agentId, LocalDate date) {
+        int count = viewingRepository.cancelDay(agentId, date, ViewingStatus.DECLINED, ViewingStatus.ATTENDED);
+        return count + " viewings cancelled";
     }
 }
