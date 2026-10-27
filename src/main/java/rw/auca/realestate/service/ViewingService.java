@@ -3,6 +3,7 @@ package rw.auca.realestate.service;
 import org.springframework.stereotype.Service;
 import rw.auca.realestate.domain.Viewing;
 import rw.auca.realestate.domain.ViewingStatus;
+import rw.auca.realestate.repository.OfferRepository;
 import rw.auca.realestate.repository.ViewingRepository;
 
 import java.time.LocalDate;
@@ -14,9 +15,11 @@ import java.util.UUID;
 public class ViewingService {
 
     private final ViewingRepository viewingRepository;
+    private final OfferRepository offerRepository;
 
-    public ViewingService(ViewingRepository viewingRepository) {
+    public ViewingService(ViewingRepository viewingRepository, OfferRepository offerRepository) {
         this.viewingRepository = viewingRepository;
+        this.offerRepository = offerRepository;
     }
 
     public String save(Viewing viewing) {
@@ -53,8 +56,12 @@ public class ViewingService {
     }
 
     public String delete(UUID id) {
-        if (!viewingRepository.existsById(id)) {
+        Optional<Viewing> found = viewingRepository.findById(id);
+        if (found.isEmpty()) {
             return "The viewing with that id does not exist";
+        }
+        if (offerRepository.existsByViewing(found.get())) {
+            return "That viewing has offers, delete them first";
         }
         viewingRepository.deleteById(id);
         return "Viewing deleted successfully";

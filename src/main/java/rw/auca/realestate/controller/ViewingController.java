@@ -96,6 +96,9 @@ public class ViewingController {
         if (message.contains("does not exist")) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
+        if (message.startsWith("That viewing has offers")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(message);
+        }
         return ResponseEntity.ok(message);
     }
 }
