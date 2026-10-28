@@ -1,5 +1,7 @@
 package rw.auca.realestate.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rw.auca.realestate.domain.Viewing;
@@ -39,6 +41,10 @@ public class ViewingService {
 
     public List<Viewing> getAll() {
         return viewingRepository.findAll();
+    }
+
+    public Page<Viewing> getPage(Pageable pageable) {
+        return viewingRepository.findAll(pageable);
     }
 
     public Optional<Viewing> getById(UUID id) {

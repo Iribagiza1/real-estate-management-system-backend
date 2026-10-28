@@ -19,6 +19,10 @@ public interface ViewingRepository extends JpaRepository<Viewing, UUID> {
 
     boolean existsByAgentIdAndViewingDateAndStatusNot(UUID agentId, LocalDate viewingDate, ViewingStatus status);
 
+    long countByViewingDate(LocalDate viewingDate);
+
+    long countByStatus(ViewingStatus status);
+
     @Query("SELECT v.status, COUNT(v) FROM Viewing v GROUP BY v.status")
     List<Object[]> countViewingsByStatus();
 
