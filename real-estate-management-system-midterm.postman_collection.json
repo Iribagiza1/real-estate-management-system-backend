@@ -1,0 +1,815 @@
+{
+  "info": {
+    "_postman_id": "ac0000f4-1b8a-4186-86e8-62eeb79f038d",
+    "name": "real-estate-management-system-midterm",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58464156",
+    "_collection_link": "https://go.postman.co/collection/58464156-ac0000f4-1b8a-4186-86e8-62eeb79f038d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "A2 save property-type",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Commercial\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/property-types/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "property-types",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 all property-types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/property-types/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "property-types",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 save property",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plotNumber\": 1024,\r\n  \"name\": \"Gishushu Commercial Block\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/properties/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "properties",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 all properties",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/properties/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "properties",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 save agent",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Patrick\",\r\n  \"lastName\": \"Nsengimana\",\r\n  \"phone\": \"0788333333\",\r\n  \"property\": { \"id\": \"3d6e5fec-55ef-46fe-98f0-e27527a067db\" },\r\n  \"propertyTypes\": [\r\n    { \"id\": \"d61d285e-23df-44a9-b134-f5a36eac95a7\" }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/agents/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "agents",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 save buyer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"David\",\r\n  \"lastName\": \"Kamanzi\",\r\n  \"nationalId\": \"1199780056789012\",\r\n  \"phone\": \"0788888888\",\r\n  \"email\": \"david.kamanzi@example.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/buyers/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "buyers",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 all agents",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/agents/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "agents",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 all buyers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/buyers/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "buyers",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 save viewing",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"viewingDate\": \"2026-10-01\",\r\n  \"status\": \"REQUESTED\",\r\n  \"notes\": \"Test past date\",\r\n  \"buyer\": { \"id\": \"a5079bef-68b4-4cde-923f-9e88974eecae\" },\r\n  \"agent\": { \"id\": \"2fb37569-948d-45ef-bbf6-76698cf5998d\" }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/save)",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "save)"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 all viewings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 update viewing",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"viewingDate\": \"2026-12-01\",\r\n  \"status\": \"DECLINED\",\r\n  \"notes\": \"PUT must not change the status\",\r\n  \"buyer\": { \"id\": \"a5079bef-68b4-4cde-923f-9e88974eecae\" },\r\n  \"agent\": { \"id\": \"2fb37569-948d-45ef-bbf6-76698cf5998d\" }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/update/fa57ed1c-c582-4622-94c3-0bd25a80298b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "update",
+            "fa57ed1c-c582-4622-94c3-0bd25a80298b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 delete viewing",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/delete/fa57ed1c-c582-4622-94c3-0bd25a80298b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "delete",
+            "fa57ed1c-c582-4622-94c3-0bd25a80298b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 viewing by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B1 buyers by last name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/buyers/by-last-name?lastName=mutesi",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "buyers",
+            "by-last-name"
+          ],
+          "query": [
+            {
+              "key": "lastName",
+              "value": "mutesi"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2 viewings by status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/by-status?status=REQUESTED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "REQUESTED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B3 viewings between dates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/between?start=2026-10-01&end=2026-10-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C1 agents by property type",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/agents/by-property-type?name=villa",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "agents",
+            "by-property-type"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "villa"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C2 free properties",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/properties/free",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "properties",
+            "free"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C3 unused property types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/property-types/unused",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "property-types",
+            "unused"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4 buyers of agent",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/buyers/of-agent/2fb37569-948d-45ef-bbf6-76698cf5998d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "buyers",
+            "of-agent",
+            "2fb37569-948d-45ef-bbf6-76698cf5998d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1 safe saving",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"viewingDate\": \"2026-12-01\",\r\n  \"status\": \"DECLINED\",\r\n  \"notes\": \"PUT must not change the status\",\r\n  \"buyer\": { \"id\": \"a5079bef-68b4-4cde-923f-9e88974eecae\" },\r\n  \"agent\": { \"id\": \"2fb37569-948d-45ef-bbf6-76698cf5998d\" }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 change status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/00000000-0000-0000-0000-000000000000/status?status=ATTENDED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "00000000-0000-0000-0000-000000000000",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "ATTENDED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 add property type to agent",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/agents/a79d152f-4188-4e32-906f-8f85cf4b2f40/property-types/d30d1084-5ba2-4318-ad10-71639e6631bf",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "agents",
+            "a79d152f-4188-4e32-906f-8f85cf4b2f40",
+            "property-types",
+            "d30d1084-5ba2-4318-ad10-71639e6631bf"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 change agent property",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/agents/d9c77fdf-7df4-4a9c-adcd-067bed70ba66/property?plotNumber=1024",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "agents",
+            "d9c77fdf-7df4-4a9c-adcd-067bed70ba66",
+            "property"
+          ],
+          "query": [
+            {
+              "key": "plotNumber",
+              "value": "1024"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1 write an offer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"paymentMode\": \"Test\",\r\n  \"conditions\": \"Throwaway offer\",\r\n  \"amount\": 1000\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/offers/save?viewingId=1e526479-58c8-48f9-b25c-81b60bdd4314",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "offers",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "viewingId",
+              "value": "1e526479-58c8-48f9-b25c-81b60bdd4314"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E2 offers of buyer",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 delete offer",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/offers/delete/4afb55d9-92a7-40cb-a45a-31ba9179aa26",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "offers",
+            "delete",
+            "4afb55d9-92a7-40cb-a45a-31ba9179aa26"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 delete viewing protected",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/delete/1e526479-58c8-48f9-b25c-81b60bdd4314",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "delete",
+            "1e526479-58c8-48f9-b25c-81b60bdd4314"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F1 viewings per status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/stats/by-status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "stats",
+            "by-status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F2 cancel day",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/cancel-day?agentId=2fb37569-948d-45ef-bbf6-76698cf5998d&date=2026-10-20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "agentId",
+              "value": "2fb37569-948d-45ef-bbf6-76698cf5998d"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus dashboard",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/dashboard/summary",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "dashboard",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/viewings/page?page=1&size=5&sort=viewingDate,desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8082",
+          "path": [
+            "api",
+            "viewings",
+            "page"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "size",
+              "value": "5"
+            },
+            {
+              "key": "sort",
+              "value": "viewingDate,desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
